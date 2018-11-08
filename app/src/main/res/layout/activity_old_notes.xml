@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_old_notes">
+
+    <Button
+        android:id="@+id/sortButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="265dp"
+        android:text="sort by:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sortText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="172dp"
+        android:text="Date"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/sortButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/oldThingOne"
+        android:layout_width="232dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="1dp"
+        android:text="Met Annie's new dog Brutus"
+        app:layout_constraintEnd_toStartOf="@+id/oldThingDateOne"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sortButton" />
+
+    <TextView
+        android:id="@+id/oldThingTwo"
+        android:layout_width="232dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="2dp"
+        android:text="Made really yummy pot pie for dinner"
+        app:layout_constraintEnd_toStartOf="@+id/oldThingDateTwo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oldThingOne" />
+
+    <TextView
+        android:id="@+id/oldThingThree"
+        android:layout_width="232dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="2dp"
+        android:text="Got to sleep in till 10 because my class got cancelled"
+        app:layout_constraintEnd_toStartOf="@+id/oldThingDateThree"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oldThingTwo" />
+
+    <TextView
+        android:id="@+id/oldThingFour"
+        android:layout_width="232dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="2dp"
+        android:text="Finished reading Slaughterhouse Five"
+        app:layout_constraintEnd_toStartOf="@+id/oldThingDateFour"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oldThingThree" />
+
+    <TextView
+        android:id="@+id/oldThingDateOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10/8"
+        tools:layout_editor_absoluteX="328dp"
+        tools:layout_editor_absoluteY="139dp" />
+
+    <TextView
+        android:id="@+id/oldThingDateTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10/8"
+        tools:layout_editor_absoluteX="330dp"
+        tools:layout_editor_absoluteY="225dp" />
+
+    <TextView
+        android:id="@+id/oldThingDateThree"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:text="10/8"
+        tools:layout_editor_absoluteX="330dp"
+        tools:layout_editor_absoluteY="299dp" />
+
+    <TextView
+        android:id="@+id/oldThingDateFour"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="16dp"
+        android:text="10/7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/oldThingFour"
+        app:layout_constraintTop_toBottomOf="@+id/oldThingThree" />
+
+</android.support.constraint.ConstraintLayout>
