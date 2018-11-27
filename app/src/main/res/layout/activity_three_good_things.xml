@@ -40,17 +40,18 @@
     <EditText
         android:id="@+id/thingThree"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="41dp"
         android:layout_marginStart="82dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="87dp"
-        android:layout_marginBottom="121dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Good thing #3"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thingTwo" />
 
     <TextView
         android:id="@+id/goodThingsTitleText"
@@ -71,10 +72,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="139dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="157dp"
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/thingThree" />
 
