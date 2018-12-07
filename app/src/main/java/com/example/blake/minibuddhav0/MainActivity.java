@@ -1,8 +1,13 @@
 package com.example.blake.minibuddhav0;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,6 +48,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         userText.setOnClickListener(this);
 
     }
+
+
+
 
     private void registerUser(String email, String password){
         mAuth.createUserWithEmailAndPassword(email, password)
