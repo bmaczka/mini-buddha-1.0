@@ -56,9 +56,9 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 int randIndex = rand.nextInt(L.size());
                 GoodThings goodThingsChosen = new GoodThings();
                 goodThingsChosen = L.get(randIndex).getValue(GoodThings.class);
-                contacts.add(new Contact(goodThingsChosen.getThingOne(), "date1"));
-                contacts.add(new Contact(goodThingsChosen.getThingTwo(), "date2"));
-                contacts.add(new Contact(goodThingsChosen.getThingThree(), "date3"));
+                contacts.add(new Contact(goodThingsChosen.getThingOne(), goodThingsChosen.getDate().toString()));
+                contacts.add(new Contact(goodThingsChosen.getThingTwo(), goodThingsChosen.getDate().toString()));
+                contacts.add(new Contact(goodThingsChosen.getThingThree(), goodThingsChosen.getDate().toString()));
                 initRecyclerView();
             }
             @Override

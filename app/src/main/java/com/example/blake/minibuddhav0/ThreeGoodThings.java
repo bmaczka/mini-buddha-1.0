@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Date;
+
 public class ThreeGoodThings extends Activity implements View.OnClickListener {
 
     private EditText thingOne, thingTwo, thingThree;
@@ -24,6 +26,7 @@ public class ThreeGoodThings extends Activity implements View.OnClickListener {
     private String thingOneText, thingTwoText, thingThreeText, user;
     private TextView messageTextView;
     private DatabaseReference key;
+    private Date date;
 
 
     @Override
@@ -54,11 +57,12 @@ public class ThreeGoodThings extends Activity implements View.OnClickListener {
             thingOneText = thingOne.getText().toString();
             thingTwoText = thingTwo.getText().toString();
             thingThreeText = thingThree.getText().toString();
+            date = new Date();
             user = User.name;
             final DatabaseReference dbref;
             dbref = FirebaseDatabase.getInstance().getReference(user);
             key = dbref.push();
-            final GoodThings goodthings = new GoodThings(thingOneText, thingTwoText, thingThreeText);
+            final GoodThings goodthings = new GoodThings(thingOneText, thingTwoText, thingThreeText, date);
             dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
