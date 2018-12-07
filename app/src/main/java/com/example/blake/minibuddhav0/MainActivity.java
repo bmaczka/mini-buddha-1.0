@@ -21,7 +21,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     //step 1: define object
     private Button loginButton, registerButton;
-    private EditText emailText, passwordText;
+    private EditText emailText, passwordText, userText;
 
 
     @Override
@@ -35,10 +35,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         registerButton = findViewById(R.id.registerButton);
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passwordText);
+        userText = findViewById(R.id.userText);
 
         //step 3b attach the listener to the object
         loginButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
+        userText.setOnClickListener(this);
 
     }
 
@@ -79,9 +81,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     public void onClick(View view) {
-        String password, email;
+        String password, email, username;
         password = passwordText.getText().toString().toUpperCase();
         email = emailText.getText().toString().toUpperCase();
+        username = userText.getText().toString().toUpperCase();
 
         if(email.length() < 6){
             Toast.makeText(this, "Too short!",Toast.LENGTH_SHORT).show();
@@ -95,6 +98,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
         else if(view == loginButton){
             login(email, password);
+            final User user = new User(email);
+            user.setUser(username);
         }
 
     }
