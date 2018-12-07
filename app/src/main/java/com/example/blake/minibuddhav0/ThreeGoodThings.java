@@ -23,6 +23,7 @@ public class ThreeGoodThings extends Activity implements View.OnClickListener {
     private Button saveButton, toOldThings, toSerenity;
     private String thingOneText, thingTwoText, thingThreeText, user;
     private TextView messageTextView;
+    private DatabaseReference key;
 
 
     @Override
@@ -54,17 +55,18 @@ public class ThreeGoodThings extends Activity implements View.OnClickListener {
             thingTwoText = thingTwo.getText().toString();
             thingThreeText = thingThree.getText().toString();
             user = User.name;
-            final GoodThings goodthings = new GoodThings(thingOneText, thingTwoText, thingThreeText);
             final DatabaseReference dbref;
             dbref = FirebaseDatabase.getInstance().getReference(user);
+            key = dbref.push();
+            final GoodThings goodthings = new GoodThings(thingOneText, thingTwoText, thingThreeText);
             dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.exists()){
-                        dbref.setValue(goodthings);
+                        key.setValue(goodthings);
                         messageTextView.setText("memories saved successfully");
                     } else { //if there's no data snapshot at all
-                        dbref.setValue(goodthings);
+                        key.setValue(goodthings);
                         messageTextView.setText("memories saved successfully");
                     }
                 }
@@ -75,7 +77,7 @@ public class ThreeGoodThings extends Activity implements View.OnClickListener {
 
 
             Toast.makeText(this, "Great success",Toast.LENGTH_SHORT).show();
-            final GoodThings newThings = new GoodThings(thingOneText, thingTwoText, thingThreeText);
+            //final GoodThings newThings = new GoodThings(thingOneText, thingTwoText, thingThreeText, key);
 
         }
         else if(view == toOldThings){
