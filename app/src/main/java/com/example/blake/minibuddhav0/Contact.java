@@ -1,11 +1,11 @@
 package com.example.blake.minibuddhav0;
 
 public class Contact {
-    public String name;
-    public String photoTitle;
+    public String goodThing;
+    public String date;
 
-    Contact(String name, String photoTitle){
-        this.name = name;
-        this.photoTitle = photoTitle;
+    Contact(String goodThing, String date){
+        this.goodThing = goodThing;
+        this.date = date;
     }
 }

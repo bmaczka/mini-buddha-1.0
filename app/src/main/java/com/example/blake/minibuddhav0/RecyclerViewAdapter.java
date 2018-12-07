@@ -35,11 +35,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
-        viewHolder.textView.setText(contacts.get(i).name);
+        viewHolder.textView.setText(contacts.get(i).goodThing);
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, contacts.get(i).name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, contacts.get(i).goodThing, Toast.LENGTH_SHORT).show();
             }
         });
     }
