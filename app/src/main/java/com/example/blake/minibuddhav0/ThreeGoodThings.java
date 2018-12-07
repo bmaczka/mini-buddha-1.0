@@ -23,7 +23,7 @@ public class ThreeGoodThings extends Activity implements View.OnClickListener {
 
     private EditText thingOne, thingTwo, thingThree;
     private Button saveButton, toOldThings, toSerenity;
-    private String thingOneText, thingTwoText, thingThreeText, user;
+    private String thingOneText, thingTwoText, thingThreeText, user, dateText;
     private TextView messageTextView;
     private DatabaseReference key;
     private Date date;
@@ -58,7 +58,6 @@ public class ThreeGoodThings extends Activity implements View.OnClickListener {
             thingTwoText = thingTwo.getText().toString();
             thingThreeText = thingThree.getText().toString();
             date = new Date();
-            user = User.name;
             final DatabaseReference dbref;
             dbref = FirebaseDatabase.getInstance().getReference(user);
             key = dbref.push();

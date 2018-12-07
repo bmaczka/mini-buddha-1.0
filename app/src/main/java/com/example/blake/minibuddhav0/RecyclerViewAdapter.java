@@ -54,7 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         RelativeLayout parentLayout;
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            dateView = itemView.findViewById(R.id.dateView);
+            //dateView = itemView.findViewById(R.id.dateView);
             textView = itemView.findViewById(R.id.textView);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }

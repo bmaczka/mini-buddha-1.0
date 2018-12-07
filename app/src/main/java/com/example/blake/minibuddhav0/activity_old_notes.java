@@ -24,7 +24,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
     private Button sortButton, notificationsButton, toHomeButton;
     private DatabaseReference dbref;
     private String user = User.name;
-    private String thingOne, thingTwo, thingThree;
+    private String thingOne, thingTwo, thingThree, date;
 
 
     private ArrayList<Contact> contacts;
@@ -56,9 +56,9 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 int randIndex = rand.nextInt(L.size());
                 GoodThings goodThingsChosen = new GoodThings();
                 goodThingsChosen = L.get(randIndex).getValue(GoodThings.class);
-                contacts.add(new Contact(goodThingsChosen.getThingOne(), goodThingsChosen.getDate().toString()));
-                contacts.add(new Contact(goodThingsChosen.getThingTwo(), goodThingsChosen.getDate().toString()));
-                contacts.add(new Contact(goodThingsChosen.getThingThree(), goodThingsChosen.getDate().toString()));
+                contacts.add(new Contact(goodThingsChosen.getThingOne()));
+                contacts.add(new Contact(goodThingsChosen.getThingTwo()));
+                contacts.add(new Contact(goodThingsChosen.getThingThree()));
                 initRecyclerView();
             }
             @Override
