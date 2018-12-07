@@ -14,8 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +33,8 @@ import java.util.Random;
 import static android.app.NotificationChannel.DEFAULT_CHANNEL_ID;
 import static android.app.NotificationManager.IMPORTANCE_NONE;
 import static android.icu.lang.UProperty.NAME;
+import static com.example.blake.minibuddhav0.NotificationUtils.ANDROID_CHANNEL_ID;
+import static com.example.blake.minibuddhav0.NotificationUtils.IOS_CHANNEL_ID;
 
 public class activity_old_notes extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,6 +42,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
     private DatabaseReference dbref;
     private String user = User.name;
     private String thingOne, thingTwo, thingThree, date;
+    private NotificationUtils mNotificationUtils;
 
 
     private ArrayList<Contact> contacts;
@@ -52,16 +57,21 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
         sortButton.setOnClickListener(this);
         notificationsButton.setOnClickListener(this);
         toHomeButton.setOnClickListener(this);
-        /*
-        createNotificationChannel();
-        Notification notification = new Notification.Builder(activity_old_notes.this)
-                .setContentTitle("title")
-                .setContentText("text")
-                .setSmallIcon(R.mipmap.ic_launcher_round)
-                .setChannelId(DEFAULT_CHANNEL_ID)
-                .build();
+        mNotificationUtils = new NotificationUtils(this);
 
-        */
+
+        notificationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String title = "title";
+                String author = "author";
+
+                if(!TextUtils.isEmpty(title) && !TextUtils.isEmpty(author)) {
+                    Notification.Builder nb = mNotificationUtils.getAndroidChannelNotification(title, "By " + author);
+                    mNotificationUtils.getManager().notify(101, nb.build());
+                }
+            }
+        });
     }
 
     private void initContacts(){
@@ -116,51 +126,23 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
         if(view == sortButton){
             //todo: sort things by either newest or oldest
         }
-        else if(view == notificationsButton){ /*
+        else if(view == notificationsButton){
             //todo: configure notifications that recycle saved things back to user
-            Toast.makeText(this, "Great success",Toast.LENGTH_SHORT).show();
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, DEFAULT_CHANNEL_ID)
-                    .setSmallIcon(R.mipmap.ic_launcher_round)
-                    .setContentTitle("My notification")
-                    .setContentText("Much longer text that cannot fit one line...")
-                    .setStyle(new NotificationCompat.BigTextStyle()
-                            .bigText("Much longer text that cannot fit one line..."))
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-            // Create an explicit intent for an Activity in your app
-            Intent intent = new Intent(this, activity_old_notes.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
-
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-            int notificationId = 8;
-            // notificationId is a unique int for each notification that you must define
-            notificationManager.notify(notificationId, mBuilder.build());
-
-            */
         }
         else if(view == toHomeButton){
             Intent HomePageIntent = new Intent(activity_old_notes.this, ThreeGoodThings.class);
             startActivity(HomePageIntent);
         }
     }
-    /*
-    private void createNotificationChannel() {
-        CharSequence channelName = "Some Channel";
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = channelName;
-            String description = getString(IMPORTANCE_NONE);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(DEFAULT_CHANNEL_ID, name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+
+
+    public Notification.Builder getAndroidChannelNotification(String title, String body) {
+        return new Notification.Builder(getApplicationContext(), ANDROID_CHANNEL_ID)
+                .setContentTitle("title")
+                .setContentText("body")
+                .setSmallIcon(android.R.drawable.stat_notify_more)
+                .setAutoCancel(true);
     }
-    */
+    
 }
