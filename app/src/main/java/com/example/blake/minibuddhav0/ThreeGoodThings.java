@@ -45,6 +45,7 @@ public class ThreeGoodThings extends Activity implements View.OnClickListener {
             thingThreeText = thingThree.getText().toString();
             Toast.makeText(this, "Great success",Toast.LENGTH_SHORT).show();
             final GoodThings newThings = new GoodThings(thingOneText, thingTwoText, thingThreeText);
+
         }
         else if(view == toOldThings){
             Intent oldNotesIntent = new Intent(ThreeGoodThings.this, activity_old_notes.class);
