@@ -10,6 +10,12 @@ public class GoodThings {
         this.thingThree = thingThree;
     }
 
+    public GoodThings(){
+        this.thingOne = "";
+        this.thingTwo = "";
+        this.thingThree = "";
+    }
+
     public String getThingOne() {
         return this.thingOne;
     }
