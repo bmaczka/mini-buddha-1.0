@@ -58,6 +58,7 @@ public class ThreeGoodThings extends Activity implements View.OnClickListener {
             thingTwoText = thingTwo.getText().toString();
             thingThreeText = thingThree.getText().toString();
             date = new Date();
+            user = User.name;
             final DatabaseReference dbref;
             dbref = FirebaseDatabase.getInstance().getReference(user);
             key = dbref.push();

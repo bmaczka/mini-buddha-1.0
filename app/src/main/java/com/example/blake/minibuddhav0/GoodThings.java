@@ -17,9 +17,9 @@ public class GoodThings {
     }
 
     public GoodThings(){
-        this.thingOne = "";
-        this.thingTwo = "";
-        this.thingThree = "";
+        this.thingOne = "something good :)";
+        this.thingTwo = "something good :)";
+        this.thingThree = "something good :)";
         this.date = new Date();
         this.counter = -1;
     }

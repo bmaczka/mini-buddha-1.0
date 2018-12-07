@@ -59,6 +59,20 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 contacts.add(new Contact(goodThingsChosen.getThingOne()));
                 contacts.add(new Contact(goodThingsChosen.getThingTwo()));
                 contacts.add(new Contact(goodThingsChosen.getThingThree()));
+                Random rand2 = new Random();
+                int randIndex2 = rand2.nextInt(L.size());
+                GoodThings goodThingsChosen2 = new GoodThings();
+                goodThingsChosen2 = L.get(randIndex2).getValue(GoodThings.class);
+                contacts.add(new Contact(goodThingsChosen2.getThingOne()));
+                contacts.add(new Contact(goodThingsChosen2.getThingTwo()));
+                contacts.add(new Contact(goodThingsChosen2.getThingThree()));
+                Random rand3 = new Random();
+                int randIndex3 = rand3.nextInt(L.size());
+                GoodThings goodThingsChosen3 = new GoodThings();
+                goodThingsChosen3 = L.get(randIndex3).getValue(GoodThings.class);
+                contacts.add(new Contact(goodThingsChosen3.getThingOne()));
+                contacts.add(new Contact(goodThingsChosen3.getThingTwo()));
+                contacts.add(new Contact(goodThingsChosen3.getThingThree()));
                 initRecyclerView();
             }
             @Override
