@@ -105,6 +105,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 for(DataSnapshot d: dataSnapshot.getChildren()){
                     L.add(d);
                 }
+                /*
                 Random rand = new Random();
                 int randIndex = rand.nextInt(L.size());
                 GoodThings goodThingsChosen = new GoodThings();
@@ -140,6 +141,16 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 contacts.add(new Contact(goodThingsChosen3.getThingOne()));
                 contacts.add(new Contact(goodThingsChosen3.getThingTwo()));
                 contacts.add(new Contact(goodThingsChosen3.getThingThree()));
+                */
+                // Implementation of sortList()
+                List<GoodThings> publishList = new ArrayList<>();
+                publishList = sortList(L);
+                for (int i = 0; i < publishList.size(); i++) {
+                    contacts.add(new Contact (publishList.get(i).getThingOne()));
+                    contacts.add(new Contact (publishList.get(i).getThingTwo()));
+                    contacts.add(new Contact (publishList.get(i).getThingThree()));
+                }
+
                 initRecyclerView();
             }
             @Override
@@ -183,7 +194,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
     // IDEA: Sort list of Good Things by data, newest to oldest, to be published to screen in
     // initContacts() function. Uses for loops to check if Good Things in initContacts() are ordered
     // by date and then reorders if needed
-    public ArrayList<GoodThings> sortList(ArrayList<DataSnapshot> dbList) {
+    public ArrayList<GoodThings> sortList(List<DataSnapshot> dbList) {
 
         // Do this for 9 GoodThings objects
 
