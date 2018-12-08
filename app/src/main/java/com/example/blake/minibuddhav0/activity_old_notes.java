@@ -41,7 +41,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
     private Button sortButton, notificationsButton, toHomeButton;
     private DatabaseReference dbref;
     private String user = User.name;
-    private String thingOne, thingTwo, thingThree, date;
+    private String thingOne, thingTwo, thingThree, date, key;
     private NotificationUtils mNotificationUtils;
 
 
@@ -63,13 +63,30 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
         notificationsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String title = "title";
-                String author = "author";
+                dbref = FirebaseDatabase.getInstance().getReference(user);
+                dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        List<DataSnapshot> L = new ArrayList<>();
+                        for(DataSnapshot d: dataSnapshot.getChildren()){
+                            L.add(d);
+                        }
+                        Random rand = new Random();
+                        int randIndex = rand.nextInt(L.size());
+                        GoodThings goodThingNotification = new GoodThings();
+                        goodThingNotification = L.get(randIndex).getValue(GoodThings.class);
+                        String thing = goodThingNotification.getThingOne();
+                        String date = "date placeholder";
 
-                if(!TextUtils.isEmpty(title) && !TextUtils.isEmpty(author)) {
-                    Notification.Builder nb = mNotificationUtils.getAndroidChannelNotification(title, "By " + author);
-                    mNotificationUtils.getManager().notify(101, nb.build());
-                }
+                        if(!TextUtils.isEmpty(thing) && !TextUtils.isEmpty(date)) {
+                            Notification.Builder nb = mNotificationUtils.getAndroidChannelNotification(thing, "recorded on:  " + date);
+                            mNotificationUtils.getManager().notify(101, nb.build());
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
             }
         });
     }
@@ -91,16 +108,30 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 contacts.add(new Contact(goodThingsChosen.getThingOne()));
                 contacts.add(new Contact(goodThingsChosen.getThingTwo()));
                 contacts.add(new Contact(goodThingsChosen.getThingThree()));
+                thingOne = goodThingsChosen.getThingOne();
                 Random rand2 = new Random();
                 int randIndex2 = rand2.nextInt(L.size());
                 GoodThings goodThingsChosen2 = new GoodThings();
                 goodThingsChosen2 = L.get(randIndex2).getValue(GoodThings.class);
+                //if below ensures that the same set of things isn't selected twice
+                if(goodThingsChosen2.getThingOne() == thingOne){
+                    rand2 = new Random();
+                }
+                randIndex2 = rand2.nextInt(L.size());
+                goodThingsChosen2 = L.get(randIndex2).getValue(GoodThings.class);
                 contacts.add(new Contact(goodThingsChosen2.getThingOne()));
                 contacts.add(new Contact(goodThingsChosen2.getThingTwo()));
                 contacts.add(new Contact(goodThingsChosen2.getThingThree()));
+                thingTwo = goodThingsChosen2.getThingOne();
                 Random rand3 = new Random();
                 int randIndex3 = rand3.nextInt(L.size());
                 GoodThings goodThingsChosen3 = new GoodThings();
+                goodThingsChosen3 = L.get(randIndex3).getValue(GoodThings.class);
+                //if below ensures that the same set of things isn't selected twice
+                if(goodThingsChosen3.getThingOne() == thingOne || goodThingsChosen3.getThingOne() == thingTwo){
+                    rand3 = new Random();
+                }
+                randIndex3 = rand3.nextInt(L.size());
                 goodThingsChosen3 = L.get(randIndex3).getValue(GoodThings.class);
                 contacts.add(new Contact(goodThingsChosen3.getThingOne()));
                 contacts.add(new Contact(goodThingsChosen3.getThingTwo()));
@@ -144,5 +175,5 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 .setSmallIcon(android.R.drawable.stat_notify_more)
                 .setAutoCancel(true);
     }
-    
+
 }
