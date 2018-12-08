@@ -185,6 +185,10 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
     // by date and then reorders if needed
     public ArrayList<DataSnapshot> sortList(ArrayList<DataSnapshot> dbList) {
 
+        // Do this for 9 GoodThings objects
+
+        List<GoodThings> gtList = new ArrayList<>();
+
         // Checks dates against date of first ArrayList item
         // ArrayLists are 0 indexed
         for (int c = 1; c <= dbList.size(); c++) {
@@ -193,7 +197,34 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
             GoodThings cGT = dbList.get(c).getValue(GoodThings.class);
             Date firstDate = firstGT.getDate();
             Date cDate = cGT.getDate();
-            //if ()
+            // Compares cDate to firstDate
+            // If cDate is newer it places it at index 0 and moves previous 1st index to c index
+            if (firstDate.compareTo(cDate) < 0) {
+                gtList.set(0, cGT);
+                gtList.set(c, firstGT);
+            }
+        }
+
+        // Check dates against date of second ArrayList item
+        for (int count = 2; count <= dbList.size(); count++) {
+
+            GoodThings secondGT = dbList.get(1).getValue(GoodThings.class);
+            GoodThings countGT = dbList.get(count).getValue(GoodThings.class);
+            Date secondDate = secondGT.getDate();
+            Date countDate = countGT.getDate();
+
+            // Compares countDate to secondDate
+            // if countDate is newer it places it at index 1 and
+            // moves previous second index to count index
+            if (secondDate.compareTo(countDate) < 0) {
+                gtList.set(1, countGT);
+                gtList.set(count, secondGT);
+            }
+        }
+
+        // Check dates against date of second ArrayList item
+        for (int counter = 3; counter <= dbList.size(); counter++) {
+
         }
 
         return (ArrayList<DataSnapshot>) dbList;
