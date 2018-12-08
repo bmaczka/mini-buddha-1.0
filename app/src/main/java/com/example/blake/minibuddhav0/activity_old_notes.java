@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -177,6 +178,25 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 .setContentText("body")
                 .setSmallIcon(android.R.drawable.stat_notify_more)
                 .setAutoCancel(true);
+    }
+
+    // IDEA: Sort list of Good Things by data, newest to oldest, to be published to screen in
+    // initContacts() function. Uses for loops to check if Good Things in initContacts() are ordered
+    // by date and then reorders if needed
+    public ArrayList<DataSnapshot> sortList(ArrayList<DataSnapshot> dbList) {
+
+        // Checks dates against date of first ArrayList item
+        // ArrayLists are 0 indexed
+        for (int c = 1; c <= dbList.size(); c++) {
+
+            GoodThings firstGT = dbList.get(0).getValue(GoodThings.class);
+            GoodThings cGT = dbList.get(c).getValue(GoodThings.class);
+            Date firstDate = firstGT.getDate();
+            Date cDate = cGT.getDate();
+            //if ()
+        }
+
+        return (ArrayList<DataSnapshot>) dbList;
     }
 
 }
