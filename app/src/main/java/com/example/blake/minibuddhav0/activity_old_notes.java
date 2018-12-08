@@ -183,7 +183,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
     // IDEA: Sort list of Good Things by data, newest to oldest, to be published to screen in
     // initContacts() function. Uses for loops to check if Good Things in initContacts() are ordered
     // by date and then reorders if needed
-    public ArrayList<DataSnapshot> sortList(ArrayList<DataSnapshot> dbList) {
+    public ArrayList<GoodThings> sortList(ArrayList<DataSnapshot> dbList) {
 
         // Do this for 9 GoodThings objects
 
@@ -222,12 +222,91 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
             }
         }
 
-        // Check dates against date of second ArrayList item
+        // Check dates against date of third ArrayList item
         for (int counter = 3; counter <= dbList.size(); counter++) {
 
+            GoodThings thirdGT = dbList.get(2).getValue(GoodThings.class);
+            GoodThings counterGT = dbList.get(counter).getValue(GoodThings.class);
+            Date thirdDate = thirdGT.getDate();
+            Date counterDate = counterGT.getDate();
+
+            if (thirdDate.compareTo(counterDate) < 0) {
+                gtList.set(2, counterGT);
+                gtList.set(counter, counterGT);
+            }
         }
 
-        return (ArrayList<DataSnapshot>) dbList;
+        // Check dates against date of fourth ArrayList item
+        for (int c4 = 4; c4 <= dbList.size(); c4++) {
+
+            GoodThings fourthGT = dbList.get(3).getValue(GoodThings.class);
+            GoodThings c4GT = dbList.get(c4).getValue(GoodThings.class);
+            Date fourthDate = fourthGT.getDate();
+            Date c4Date = c4GT.getDate();
+
+            if (fourthDate.compareTo(c4Date) < 0) {
+                gtList.set(3, c4GT);
+                gtList.set(c4, fourthGT);
+            }
+        }
+
+        // Checks dates against date of fifth ArrayList item
+        for (int c5 = 5; c5 <= dbList.size(); c5++) {
+
+            GoodThings fifthGT = dbList.get(4).getValue(GoodThings.class);
+            GoodThings c5GT = dbList.get(c5).getValue(GoodThings.class);
+            Date fifthDate = fifthGT.getDate();
+            Date c5Date = c5GT.getDate();
+
+            if (fifthDate.compareTo(c5Date) < 0) {
+                gtList.set(4, c5GT);
+                gtList.set(c5, fifthGT);
+            }
+        }
+
+        // Checks dates against date of sixth ArrayList item
+        for (int c6 = 6; c6 <= dbList.size(); c6++) {
+
+            GoodThings sixthGT = dbList.get(5).getValue(GoodThings.class);
+            GoodThings c6GT = dbList.get(c6).getValue(GoodThings.class);
+            Date sixthDate = sixthGT.getDate();
+            Date c6Date = c6GT.getDate();
+
+            if (sixthDate.compareTo(c6Date) < 0) {
+                gtList.set(5, c6GT);
+                gtList.set(c6, sixthGT);
+            }
+        }
+
+        // Checks dates against date of seventh ArrayList item
+        for (int c7 = 7; c7 <= dbList.size(); c7++) {
+
+            GoodThings seventhGT = dbList.get(6).getValue(GoodThings.class);
+            GoodThings c7GT = dbList.get(c7).getValue(GoodThings.class);
+            Date seventhDate = seventhGT.getDate();
+            Date c7Date = c7GT.getDate();
+
+            if (seventhDate.compareTo(c7Date) < 0) {
+                gtList.set(6, c7GT);
+                gtList.set(c7, seventhGT);
+            }
+        }
+
+        // Checks dates against eight ArrayList item
+        for (int c8 = 8; c8 <= dbList.size(); c8++) {
+
+            GoodThings eigthGT = dbList.get(7).getValue(GoodThings.class);
+            GoodThings c8GT = dbList.get(c8).getValue(GoodThings.class);
+            Date eigthDate = eigthGT.getDate();
+            Date c8Date = c8GT.getDate();
+
+            if (eigthDate.compareTo(c8Date) < 0) {
+                gtList.set(7, c8GT);
+                gtList.set(c8, eigthGT);
+            }
+        }
+
+        return (ArrayList<GoodThings>) gtList;
     }
 
 }
