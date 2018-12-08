@@ -76,7 +76,10 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                         GoodThings goodThingNotification = new GoodThings();
                         goodThingNotification = L.get(randIndex).getValue(GoodThings.class);
                         String thing = goodThingNotification.getThingOne();
-                        String date = "date placeholder";
+                        String dateDay = Integer.toString(goodThingNotification.getDate().getDay());
+                        String dateMonth = Integer.toString(goodThingNotification.getDate().getMonth());
+                        //String dateYear = Integer.toString(goodThingNotification.getDate().getYear());
+                        String date = dateMonth + "/" + dateDay;
 
                         if(!TextUtils.isEmpty(thing) && !TextUtils.isEmpty(date)) {
                             Notification.Builder nb = mNotificationUtils.getAndroidChannelNotification(thing, "recorded on:  " + date);
