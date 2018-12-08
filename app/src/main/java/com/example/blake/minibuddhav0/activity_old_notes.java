@@ -202,22 +202,32 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
 
         // Checks dates against date of first ArrayList item
         // ArrayLists are 0 indexed
-        for (int c = 1; c <= dbList.size(); c++) {
+        for (int c = 1; c < dbList.size(); c++) {
 
             GoodThings firstGT = dbList.get(0).getValue(GoodThings.class);
             GoodThings cGT = dbList.get(c).getValue(GoodThings.class);
             Date firstDate = firstGT.getDate();
             Date cDate = cGT.getDate();
             // Compares cDate to firstDate
-            // If cDate is newer it places it at index 0 and moves previous 1st index to c index
-            if (firstDate.compareTo(cDate) < 0) {
-                gtList.set(0, cGT);
-                gtList.set(c, firstGT);
+            if(c ==1){
+                gtList.add(0, cGT);
+                gtList.add(c, firstGT);
             }
+            // If cDate is newer it places it at index 0 and moves previous 1st index to c index
+            else if (firstDate.compareTo(cDate) < 0) {
+                gtList.set(0, cGT);
+                gtList.add(c, cGT); //this line used to pass firstGT as its 2nd arg but this was giving duplication errors
+            }
+            /*
+            if (firstDate.compareTo(cDate) < 0) {
+                gtList.add(0, cGT);
+                gtList.add(c, firstGT);
+            }
+            */
         }
 
         // Check dates against date of second ArrayList item
-        for (int count = 2; count <= dbList.size(); count++) {
+        for (int count = 2; count < dbList.size(); count++) {
 
             GoodThings secondGT = dbList.get(1).getValue(GoodThings.class);
             GoodThings countGT = dbList.get(count).getValue(GoodThings.class);
@@ -234,7 +244,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
         }
 
         // Check dates against date of third ArrayList item
-        for (int counter = 3; counter <= dbList.size(); counter++) {
+        for (int counter = 3; counter < dbList.size(); counter++) {
 
             GoodThings thirdGT = dbList.get(2).getValue(GoodThings.class);
             GoodThings counterGT = dbList.get(counter).getValue(GoodThings.class);
@@ -248,7 +258,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
         }
 
         // Check dates against date of fourth ArrayList item
-        for (int c4 = 4; c4 <= dbList.size(); c4++) {
+        for (int c4 = 4; c4 < dbList.size(); c4++) {
 
             GoodThings fourthGT = dbList.get(3).getValue(GoodThings.class);
             GoodThings c4GT = dbList.get(c4).getValue(GoodThings.class);
@@ -262,7 +272,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
         }
 
         // Checks dates against date of fifth ArrayList item
-        for (int c5 = 5; c5 <= dbList.size(); c5++) {
+        for (int c5 = 5; c5 < dbList.size(); c5++) {
 
             GoodThings fifthGT = dbList.get(4).getValue(GoodThings.class);
             GoodThings c5GT = dbList.get(c5).getValue(GoodThings.class);
@@ -276,7 +286,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
         }
 
         // Checks dates against date of sixth ArrayList item
-        for (int c6 = 6; c6 <= dbList.size(); c6++) {
+        for (int c6 = 6; c6 < dbList.size(); c6++) {
 
             GoodThings sixthGT = dbList.get(5).getValue(GoodThings.class);
             GoodThings c6GT = dbList.get(c6).getValue(GoodThings.class);
@@ -290,7 +300,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
         }
 
         // Checks dates against date of seventh ArrayList item
-        for (int c7 = 7; c7 <= dbList.size(); c7++) {
+        for (int c7 = 7; c7 < dbList.size(); c7++) {
 
             GoodThings seventhGT = dbList.get(6).getValue(GoodThings.class);
             GoodThings c7GT = dbList.get(c7).getValue(GoodThings.class);
@@ -304,7 +314,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
         }
 
         // Checks dates against eight ArrayList item
-        for (int c8 = 8; c8 <= dbList.size(); c8++) {
+        for (int c8 = 8; c8 < dbList.size(); c8++) {
 
             GoodThings eigthGT = dbList.get(7).getValue(GoodThings.class);
             GoodThings c8GT = dbList.get(c8).getValue(GoodThings.class);
