@@ -12,8 +12,8 @@ public class GuidedMeditation extends AppCompatActivity implements View.OnClickL
     private Button fiveMinuteButton, tenMinuteButton, fifteenMinuteButton, startButton;
     private TextView timerTextView;
     private CountDownTimer countDownTimer;
-    private long startTimeInMillis = 600000;
-    private long timeLeftInMilliseconds = startTimeInMillis; //10 minutes
+    private long startTimeInMillis = 600000; //10 minutes
+    private long timeLeftInMilliseconds = startTimeInMillis;
     private boolean timerRunning;
 
     @Override
@@ -46,18 +46,36 @@ public class GuidedMeditation extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if(view == fiveMinuteButton){
-            //set timer to 05:00
-        }
-        else if(view == tenMinuteButton){
-            //set timer to 10:00
-        }
-        else if(view == fifteenMinuteButton){
-            //set timer to 15:00
-        }
-        else if(view == startButton){
-            //start the timer and update the text view to reflect the countdown
-            startTimer();
+        int minutes = (int) timeLeftInMilliseconds / 60000;
+        int seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
+        switch(view.getId()) {
+            case R.id.fiveMinuteButton:
+                //set timer to 05:00
+                timeLeftInMilliseconds = 300000;
+                String currentTime = timeParser(minutes, seconds);
+                timerTextView.setText(currentTime);
+                break;
+
+            case R.id.tenMinuteButton:
+                //set timer to 10:00
+                timeLeftInMilliseconds = 600000;
+                timerTextView.setText(timeParser(minutes, seconds));
+                currentTime = timeParser(minutes, seconds);
+                timerTextView.setText(currentTime);
+                break;
+
+            case R.id.fifteenMinuteButton:
+                //set timer to 15:00
+                timeLeftInMilliseconds = 900000;
+                timerTextView.setText(timeParser(minutes, seconds));
+                currentTime = timeParser(minutes, seconds);
+                timerTextView.setText(currentTime);
+                break;
+
+            case R.id.startButton:
+                //start the timer and update the text view to reflect the countdown
+                startTimer();
+                break;
         }
     }
 
@@ -90,12 +108,16 @@ public class GuidedMeditation extends AppCompatActivity implements View.OnClickL
     int minutes = (int) timeLeftInMilliseconds / 60000;
     int seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
 
-    String timeLeftText;
-    timeLeftText = "" + minutes;
-    timeLeftText += ":";
-    if(seconds < 10) timeLeftText += "0";
-    timeLeftText += seconds;
-
+    String timeLeftText = timeParser(minutes, seconds);
     timerTextView.setText(timeLeftText);
+    }
+
+    public String timeParser(int minutes, int seconds){
+        String timeLeftText;
+        timeLeftText = "" + minutes;
+        timeLeftText += ":";
+        if(seconds < 10) timeLeftText += "0";
+        timeLeftText += seconds;
+        return timeLeftText;
     }
 }
