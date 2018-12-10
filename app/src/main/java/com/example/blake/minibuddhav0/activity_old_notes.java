@@ -1,27 +1,16 @@
 package com.example.blake.minibuddhav0;
 
-import android.app.AlarmManager;
+import android.app.Activity;
 import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.os.SystemClock;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -32,17 +21,12 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import static android.app.NotificationChannel.DEFAULT_CHANNEL_ID;
-import static android.app.NotificationManager.IMPORTANCE_NONE;
-import static android.icu.lang.UProperty.NAME;
 import static com.example.blake.minibuddhav0.NotificationUtils.ANDROID_CHANNEL_ID;
-import static com.example.blake.minibuddhav0.NotificationUtils.IOS_CHANNEL_ID;
 
-public class activity_old_notes extends AppCompatActivity implements View.OnClickListener {
+public class activity_old_notes extends Activity implements View.OnClickListener {
 
     private Button sortButton, notificationsButton, toHomeButton;
     private DatabaseReference dbref;

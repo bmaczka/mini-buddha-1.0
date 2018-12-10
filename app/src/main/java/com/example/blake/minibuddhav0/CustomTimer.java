@@ -1,5 +1,6 @@
 package com.example.blake.minibuddhav0;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
@@ -11,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class CustomTimer extends AppCompatActivity implements View.OnClickListener {
+public class CustomTimer extends Activity implements View.OnClickListener {
 
     private Button startButton;
     private EditText customTimeText;
@@ -29,9 +30,8 @@ public class CustomTimer extends AppCompatActivity implements View.OnClickListen
 
         startButton = findViewById(R.id.customStartButton);
         customTimeText = findViewById(R.id.customTimeText);
-        customTimeTextView = findViewById(R.id.customTimeTextView);
+        customTimeTextView = findViewById(R.id.customTimerTextView);
 
-        customTime = Integer.parseInt(customTimeText.getText().toString());
         startTimeInMillis = customTime * 6000;
 
         startButton.setOnClickListener(this);
@@ -41,7 +41,7 @@ public class CustomTimer extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-
+        customTime = Integer.parseInt(customTimeText.getText().toString());
         if(timerRunning){
             stopTimer();
         }
