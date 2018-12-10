@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">miniBuddhaV0</string>
+    <string name="title_activity_custom_timer">CustomTimer</string>
 </resources>

@@ -19,7 +19,11 @@
         <activity android:name=".ThreeGoodThings" />
         <activity android:name=".GuidedMeditation" />
         <activity android:name=".Settings" />
-        <activity android:name=".activity_old_notes"></activity>
+        <activity android:name=".activity_old_notes" />
+        <activity
+            android:name=".CustomTimer"
+            android:label="@string/title_activity_custom_timer"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.example.blake.minibuddhav0;
 
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 
 public class GuidedMeditation extends AppCompatActivity implements View.OnClickListener {
 
-    private Button fiveMinuteButton, tenMinuteButton, fifteenMinuteButton, startButton;
+    private Button fiveMinuteButton, tenMinuteButton, fifteenMinuteButton, customButton, startButton;
     private TextView timerTextView;
     private CountDownTimer countDownTimer;
     private long startTimeInMillis = 600000; //10 minutes
@@ -24,11 +25,13 @@ public class GuidedMeditation extends AppCompatActivity implements View.OnClickL
         fiveMinuteButton = findViewById(R.id.fiveMinuteButton);
         tenMinuteButton = findViewById(R.id.tenMinuteButton);
         fifteenMinuteButton = findViewById(R.id.fifteenMinuteButton);
+        customButton = findViewById(R.id.customButton);
         timerTextView = findViewById(R.id.timerTextView);
         startButton = findViewById(R.id.startButton);
         fiveMinuteButton.setOnClickListener(this);
         tenMinuteButton.setOnClickListener(this);
         fifteenMinuteButton.setOnClickListener(this);
+        customButton.setOnClickListener(this);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +73,11 @@ public class GuidedMeditation extends AppCompatActivity implements View.OnClickL
                 timerTextView.setText(timeParser(minutes, seconds));
                 currentTime = timeParser(minutes, seconds);
                 timerTextView.setText(currentTime);
+                break;
+
+            case R.id.customButton:
+                Intent customIntent = new Intent(GuidedMeditation.this, CustomTimer.class);
+                startActivity(customIntent);
                 break;
 
             case R.id.startButton:

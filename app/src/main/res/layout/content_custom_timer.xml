@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".CustomTimer"
+    tools:showIn="@layout/activity_custom_timer">
+
+    <TextView
+        android:id="@+id/customText"
+        android:layout_width="250dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="67dp"
+        android:text="Guided Mediation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/customTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="84dp"
+        android:ems="10"
+        android:hint="Enter custom time here"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customTimerTextView" />
+
+    <Button
+        android:id="@+id/customStartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginBottom="106dp"
+        android:text="Start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customTimeText" />
+
+    <TextView
+        android:id="@+id/customTimerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="163dp"
+        android:layout_marginTop="81dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginBottom="58dp"
+        android:text="00:00"
+        app:layout_constraintBottom_toTopOf="@+id/customTimeText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customText" />
+</android.support.constraint.ConstraintLayout>
