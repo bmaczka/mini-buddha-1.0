@@ -1,11 +1,12 @@
 package com.example.blake.minibuddhav0;
 
-public class Contact {
+public class Note {
     public String goodThing;
     //public String date;
 
-    Contact(String goodThing){
+    Note(String goodThing){
         this.goodThing = goodThing;
         //this.date = date;
     }
 }
+

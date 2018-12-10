@@ -49,7 +49,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
     private String user = User.name;
     private String thingOne, thingTwo, thingThree, date, key;
     private NotificationUtils mNotificationUtils;
-    private ArrayList<Contact> contacts;
+    private ArrayList<Note> notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +101,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
     }
 
     private void initContacts() {
-        contacts = new ArrayList<>();
+        notes = new ArrayList<>();
         dbref = FirebaseDatabase.getInstance().getReference(user);
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -114,9 +114,9 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 int randIndex = rand.nextInt(L.size());
                 GoodThings goodThingsChosen = new GoodThings();
                 goodThingsChosen = L.get(randIndex).getValue(GoodThings.class);
-                contacts.add(new Contact(goodThingsChosen.getThingOne()));
-                contacts.add(new Contact(goodThingsChosen.getThingTwo()));
-                contacts.add(new Contact(goodThingsChosen.getThingThree()));
+                notes.add(new Note(goodThingsChosen.getThingOne()));
+                notes.add(new Note(goodThingsChosen.getThingTwo()));
+                notes.add(new Note(goodThingsChosen.getThingThree()));
                 thingOne = goodThingsChosen.getThingOne();
                 Random rand2 = new Random();
                 int randIndex2 = rand2.nextInt(L.size());
@@ -128,9 +128,9 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 }
                 randIndex2 = rand2.nextInt(L.size());
                 goodThingsChosen2 = L.get(randIndex2).getValue(GoodThings.class);
-                contacts.add(new Contact(goodThingsChosen2.getThingOne()));
-                contacts.add(new Contact(goodThingsChosen2.getThingTwo()));
-                contacts.add(new Contact(goodThingsChosen2.getThingThree()));
+                notes.add(new Note(goodThingsChosen2.getThingOne()));
+                notes.add(new Note(goodThingsChosen2.getThingTwo()));
+                notes.add(new Note(goodThingsChosen2.getThingThree()));
                 thingTwo = goodThingsChosen2.getThingOne();
                 Random rand3 = new Random();
                 int randIndex3 = rand3.nextInt(L.size());
@@ -142,9 +142,9 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 }
                 randIndex3 = rand3.nextInt(L.size());
                 goodThingsChosen3 = L.get(randIndex3).getValue(GoodThings.class);
-                contacts.add(new Contact(goodThingsChosen3.getThingOne()));
-                contacts.add(new Contact(goodThingsChosen3.getThingTwo()));
-                contacts.add(new Contact(goodThingsChosen3.getThingThree()));
+                notes.add(new Note(goodThingsChosen3.getThingOne()));
+                notes.add(new Note(goodThingsChosen3.getThingTwo()));
+                notes.add(new Note(goodThingsChosen3.getThingThree()));
                 initRecyclerView();
             }
 
@@ -157,7 +157,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
 
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.oldThingsRecyclerView);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(contacts, this);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(notes, this);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -166,7 +166,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         if (view == sortButton) {
             //sorts Things from oldest to newest
-            contacts = new ArrayList<>();
+            notes = new ArrayList<>();
             dbref = FirebaseDatabase.getInstance().getReference(user);
             dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -211,9 +211,9 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                     }
                     //creates contacts from notes
                     for (int i = 0; i < List.size(); i++) {
-                        contacts.add(new Contact(List.get(i).getValue(GoodThings.class).getThingOne()));
-                        contacts.add(new Contact(List.get(i).getValue(GoodThings.class).getThingTwo()));
-                        contacts.add(new Contact(List.get(i).getValue(GoodThings.class).getThingThree()));
+                        notes.add(new Note(List.get(i).getValue(GoodThings.class).getThingOne()));
+                        notes.add(new Note(List.get(i).getValue(GoodThings.class).getThingTwo()));
+                        notes.add(new Note(List.get(i).getValue(GoodThings.class).getThingThree()));
                     }
                     //adds contacts to recycler view
                     initRecyclerView();

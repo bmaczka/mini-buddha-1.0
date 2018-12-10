@@ -16,11 +16,11 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<Contact> contacts = new ArrayList<>();
+    private ArrayList<Note> notes = new ArrayList<>();
     private Context mContext;
 
-    RecyclerViewAdapter(ArrayList<Contact> contacts, Context mContext ){
-        this.contacts = contacts;
+    RecyclerViewAdapter(ArrayList<Note> notes, Context mContext ){
+        this.notes = notes;
         this.mContext = mContext;
     }
 
@@ -35,18 +35,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
-        viewHolder.textView.setText(contacts.get(i).goodThing);
+        viewHolder.textView.setText(notes.get(i).goodThing);
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, contacts.get(i).goodThing, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, notes.get(i).goodThing, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return contacts.size();
+        return notes.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
