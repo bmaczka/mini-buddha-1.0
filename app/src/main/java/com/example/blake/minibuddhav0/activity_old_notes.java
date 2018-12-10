@@ -57,13 +57,14 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_old_notes);
         initContacts();
         sortButton = findViewById(R.id.sortButton);
+        //sortAlphaButton = findViewById(R.id.sortAlphaButton);
         notificationsButton = findViewById(R.id.notificationsButton);
         toHomeButton = findViewById(R.id.toHomeButton);
         sortButton.setOnClickListener(this);
         notificationsButton.setOnClickListener(this);
         toHomeButton.setOnClickListener(this);
         mNotificationUtils = new NotificationUtils(this);
-
+        //sortAlphaButton.setOnClickListener(this);
 
         notificationsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +110,6 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 for(DataSnapshot d: dataSnapshot.getChildren()){
                     L.add(d);
                 }
-                /*
                 Random rand = new Random();
                 int randIndex = rand.nextInt(L.size());
                 GoodThings goodThingsChosen = new GoodThings();
@@ -145,49 +145,6 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 contacts.add(new Contact(goodThingsChosen3.getThingOne()));
                 contacts.add(new Contact(goodThingsChosen3.getThingTwo()));
                 contacts.add(new Contact(goodThingsChosen3.getThingThree()));
-                */
-                // Implementation of sortList()
-                List<GoodThings> publishList = new ArrayList<>();
-                // My top posts by number of stars
-                Query notesOrderedByDate = dbref.child(user).orderByChild("date");
-                notesOrderedByDate.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                    // TODO: implement the ChildEventListener methods as documented above
-                    // ...
-                });
-                List<DataSnapshot> List = new ArrayList<>();
-                for(DataSnapshot d: dataSnapshot.getChildren()){
-                    List.add(d);
-                }
-                for (int i = 0; i < List.size(); i++) {
-                    contacts.add(new Contact (List.get(i).getValue(GoodThings.class).getThingOne()));
-                    contacts.add(new Contact (List.get(i).getValue(GoodThings.class).getThingTwo()));
-                    contacts.add(new Contact (List.get(i).getValue(GoodThings.class).getThingThree()));
-                }
-
                 initRecyclerView();
             }
             @Override
@@ -208,6 +165,64 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         if(view == sortButton){
             //todo: sort things by either newest or oldest
+            contacts = new ArrayList<>();
+            dbref = FirebaseDatabase.getInstance().getReference(user);
+            dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    List<DataSnapshot> L = new ArrayList<>();
+                    for(DataSnapshot d: dataSnapshot.getChildren()){
+                        L.add(d);
+                    }
+                    // Implementation of sortList()
+                    List<GoodThings> publishList = new ArrayList<>();
+                    // My top posts by number of stars
+                    Query notesOrderedByDate = dbref.child(user).orderByChild("date");
+                    notesOrderedByDate.addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                        }
+
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                        // TODO: implement the ChildEventListener methods as documented above
+                        // ...
+                    });
+                    List<DataSnapshot> List = new ArrayList<>();
+                    for(DataSnapshot d: dataSnapshot.getChildren()){
+                        List.add(d);
+                    }
+                    for (int i = 0; i < List.size(); i++) {
+                        contacts.add(new Contact (List.get(i).getValue(GoodThings.class).getThingOne()));
+                        contacts.add(new Contact (List.get(i).getValue(GoodThings.class).getThingTwo()));
+                        contacts.add(new Contact (List.get(i).getValue(GoodThings.class).getThingThree()));
+                    }
+                    initRecyclerView();
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
+            initRecyclerView();
+
         }
         else if(view == notificationsButton){
             //todo: configure notifications that recycle saved things back to user
@@ -362,4 +377,42 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
 
     }
 */
+
+    /*
+                Random rand = new Random();
+                int randIndex = rand.nextInt(L.size());
+                GoodThings goodThingsChosen = new GoodThings();
+                goodThingsChosen = L.get(randIndex).getValue(GoodThings.class);
+                contacts.add(new Contact(goodThingsChosen.getThingOne()));
+                contacts.add(new Contact(goodThingsChosen.getThingTwo()));
+                contacts.add(new Contact(goodThingsChosen.getThingThree()));
+                thingOne = goodThingsChosen.getThingOne();
+                Random rand2 = new Random();
+                int randIndex2 = rand2.nextInt(L.size());
+                GoodThings goodThingsChosen2 = new GoodThings();
+                goodThingsChosen2 = L.get(randIndex2).getValue(GoodThings.class);
+                //if below ensures that the same set of things isn't selected twice
+                if(goodThingsChosen2.getThingOne() == thingOne){
+                    rand2 = new Random();
+                }
+                randIndex2 = rand2.nextInt(L.size());
+                goodThingsChosen2 = L.get(randIndex2).getValue(GoodThings.class);
+                contacts.add(new Contact(goodThingsChosen2.getThingOne()));
+                contacts.add(new Contact(goodThingsChosen2.getThingTwo()));
+                contacts.add(new Contact(goodThingsChosen2.getThingThree()));
+                thingTwo = goodThingsChosen2.getThingOne();
+                Random rand3 = new Random();
+                int randIndex3 = rand3.nextInt(L.size());
+                GoodThings goodThingsChosen3 = new GoodThings();
+                goodThingsChosen3 = L.get(randIndex3).getValue(GoodThings.class);
+                //if below ensures that the same set of things isn't selected twice
+                if(goodThingsChosen3.getThingOne() == thingOne || goodThingsChosen3.getThingOne() == thingTwo){
+                    rand3 = new Random();
+                }
+                randIndex3 = rand3.nextInt(L.size());
+                goodThingsChosen3 = L.get(randIndex3).getValue(GoodThings.class);
+                contacts.add(new Contact(goodThingsChosen3.getThingOne()));
+                contacts.add(new Contact(goodThingsChosen3.getThingTwo()));
+                contacts.add(new Contact(goodThingsChosen3.getThingThree()));
+                */
 }
