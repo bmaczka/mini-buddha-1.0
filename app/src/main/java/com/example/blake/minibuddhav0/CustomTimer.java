@@ -35,6 +35,8 @@ public class CustomTimer extends AppCompatActivity implements View.OnClickListen
         startTimeInMillis = customTime * 6000;
 
         startButton.setOnClickListener(this);
+
+        updateTimer();
     }
 
     @Override
