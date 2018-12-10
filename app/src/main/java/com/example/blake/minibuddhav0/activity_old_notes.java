@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,10 +21,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -44,6 +47,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
     private String user = User.name;
     private String thingOne, thingTwo, thingThree, date, key;
     private NotificationUtils mNotificationUtils;
+    private boolean sorted = false;
 
 
     private ArrayList<Contact> contacts;
@@ -144,11 +148,44 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 */
                 // Implementation of sortList()
                 List<GoodThings> publishList = new ArrayList<>();
-                publishList = sortList(L);
-                for (int i = 0; i < publishList.size(); i++) {
-                    contacts.add(new Contact (publishList.get(i).getThingOne()));
-                    contacts.add(new Contact (publishList.get(i).getThingTwo()));
-                    contacts.add(new Contact (publishList.get(i).getThingThree()));
+                // My top posts by number of stars
+                Query notesOrderedByDate = dbref.child(user).orderByChild("date");
+                notesOrderedByDate.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                    // TODO: implement the ChildEventListener methods as documented above
+                    // ...
+                });
+                List<DataSnapshot> List = new ArrayList<>();
+                for(DataSnapshot d: dataSnapshot.getChildren()){
+                    List.add(d);
+                }
+                for (int i = 0; i < List.size(); i++) {
+                    contacts.add(new Contact (List.get(i).getValue(GoodThings.class).getThingOne()));
+                    contacts.add(new Contact (List.get(i).getValue(GoodThings.class).getThingTwo()));
+                    contacts.add(new Contact (List.get(i).getValue(GoodThings.class).getThingThree()));
                 }
 
                 initRecyclerView();
@@ -190,7 +227,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
                 .setSmallIcon(android.R.drawable.stat_notify_more)
                 .setAutoCancel(true);
     }
-
+    /*
     // IDEA: Sort list of Good Things by data, newest to oldest, to be published to screen in
     // initContacts() function. Uses for loops to check if Good Things in initContacts() are ordered
     // by date and then reorders if needed
@@ -205,25 +242,19 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
         for (int c = 1; c < dbList.size(); c++) {
 
             GoodThings firstGT = dbList.get(0).getValue(GoodThings.class);
-            GoodThings cGT = dbList.get(c).getValue(GoodThings.class);
+            GoodThings countGT = dbList.get(c).getValue(GoodThings.class);
             Date firstDate = firstGT.getDate();
-            Date cDate = cGT.getDate();
+            Date cDate = countGT.getDate();
             // Compares cDate to firstDate
             if(c ==1){
-                gtList.add(0, cGT);
+                gtList.add(0, countGT);
                 gtList.add(c, firstGT);
             }
             // If cDate is newer it places it at index 0 and moves previous 1st index to c index
             else if (firstDate.compareTo(cDate) < 0) {
-                gtList.set(0, cGT);
-                gtList.add(c, cGT); //this line used to pass firstGT as its 2nd arg but this was giving duplication errors
+                gtList.set(0, countGT);
+                gtList.add(c, countGT); //this line used to pass firstGT as its 2nd arg but this was giving duplication errors
             }
-            /*
-            if (firstDate.compareTo(cDate) < 0) {
-                gtList.add(0, cGT);
-                gtList.add(c, firstGT);
-            }
-            */
         }
 
         // Check dates against date of second ArrayList item
@@ -328,6 +359,7 @@ public class activity_old_notes extends AppCompatActivity implements View.OnClic
         }
 
         return (ArrayList<GoodThings>) gtList;
-    }
 
+    }
+*/
 }
