@@ -8,9 +8,9 @@
 
     <EditText
         android:id="@+id/thingOne"
-        android:layout_width="329dp"
+        android:layout_width="340dp"
         android:layout_height="45dp"
-        android:layout_marginStart="84dp"
+        android:layout_marginStart="85dp"
         android:layout_marginTop="121dp"
         android:layout_marginEnd="85dp"
         android:ems="10"
@@ -18,50 +18,51 @@
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/thingTwo"
-        android:layout_width="343dp"
+        android:layout_width="340dp"
         android:layout_height="45dp"
-        android:layout_marginStart="83dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="86dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="85dp"
         android:ems="10"
         android:hint="Good thing #2"
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/thingOne" />
 
     <EditText
         android:id="@+id/thingThree"
-        android:layout_width="357dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="82dp"
+        android:layout_width="340dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="85dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="87dp"
+        android:layout_marginEnd="85dp"
         android:ems="10"
         android:hint="Good thing #3"
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/thingTwo" />
 
     <TextView
         android:id="@+id/goodThingsTitleText"
-        android:layout_width="207dp"
-        android:layout_height="50dp"
+        android:layout_width="270dp"
+        android:layout_height="81dp"
         android:layout_marginStart="163dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="160dp"
         android:text="3 Good Things"
-        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,14 +70,13 @@
 
     <Button
         android:id="@+id/save_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="139dp"
+        android:layout_width="234dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="145dp"
         android:layout_marginTop="56dp"
-        android:layout_marginEnd="157dp"
+        android:layout_marginEnd="145dp"
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/thingThree" />
 
@@ -84,21 +84,20 @@
         android:id="@+id/guidedMeditationButton"
         android:layout_width="194dp"
         android:layout_height="55dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:text="to guided meditation"
-        app:layout_constraintEnd_toStartOf="@+id/threeGoodThingsButton"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/threeGoodThingsButton"
         app:layout_constraintTop_toBottomOf="@+id/save_Button" />
 
     <Button
         android:id="@+id/threeGoodThingsButton"
         android:layout_width="200dp"
         android:layout_height="55dp"
-        android:layout_marginTop="5dp"
-        android:text="to three good things"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/guidedMeditationButton"
+        android:layout_marginTop="8dp"
+        android:text="to old notes"
+        app:layout_constraintEnd_toStartOf="@+id/guidedMeditationButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/save_Button" />
 
     <TextView

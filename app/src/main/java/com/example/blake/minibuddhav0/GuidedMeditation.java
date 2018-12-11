@@ -25,13 +25,13 @@ public class GuidedMeditation extends AppCompatActivity implements View.OnClickL
         fiveMinuteButton = findViewById(R.id.fiveMinuteButton);
         tenMinuteButton = findViewById(R.id.tenMinuteButton);
         fifteenMinuteButton = findViewById(R.id.fifteenMinuteButton);
-        customButton = findViewById(R.id.customButton);
+        //customButton = findViewById(R.id.customButton);
         timerTextView = findViewById(R.id.timerTextView);
         startButton = findViewById(R.id.startButton);
         fiveMinuteButton.setOnClickListener(this);
         tenMinuteButton.setOnClickListener(this);
         fifteenMinuteButton.setOnClickListener(this);
-        customButton.setOnClickListener(this);
+        //customButton.setOnClickListener(this);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +62,6 @@ public class GuidedMeditation extends AppCompatActivity implements View.OnClickL
             case R.id.tenMinuteButton:
                 //set timer to 10:00
                 timeLeftInMilliseconds = 600000;
-                timerTextView.setText(timeParser(minutes, seconds));
                 currentTime = timeParser(minutes, seconds);
                 timerTextView.setText(currentTime);
                 break;
@@ -70,15 +69,15 @@ public class GuidedMeditation extends AppCompatActivity implements View.OnClickL
             case R.id.fifteenMinuteButton:
                 //set timer to 15:00
                 timeLeftInMilliseconds = 900000;
-                timerTextView.setText(timeParser(minutes, seconds));
                 currentTime = timeParser(minutes, seconds);
                 timerTextView.setText(currentTime);
                 break;
 
-            case R.id.customButton:
+           /*case R.id.customButton:
                 Intent customIntent = new Intent(GuidedMeditation.this, CustomTimer.class);
                 startActivity(customIntent);
                 break;
+           */
 
             case R.id.startButton:
                 //start the timer and update the text view to reflect the countdown

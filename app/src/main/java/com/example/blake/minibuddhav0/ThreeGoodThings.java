@@ -80,7 +80,7 @@ public class ThreeGoodThings extends Activity implements View.OnClickListener {
             });
 
 
-            Toast.makeText(this, "Great success",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Great success",Toast.LENGTH_SHORT).show();
             //final GoodThings newThings = new GoodThings(thingOneText, thingTwoText, thingThreeText, key);
 
         }

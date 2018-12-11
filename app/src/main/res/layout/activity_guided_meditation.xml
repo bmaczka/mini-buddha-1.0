@@ -11,14 +11,12 @@
         android:id="@+id/guidedMeditationText"
         android:layout_width="250dp"
         android:layout_height="54dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="89dp"
-        android:text="Guided Meditation"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="54dp"
+        android:text="Meditation Timer"
         android:textAlignment="center"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/timerTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,41 +26,48 @@
         android:layout_width="248dp"
         android:layout_height="49dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="56dp"
-        android:text="5"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/tenMinuteButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customButton" />
-
-    <Button
-        android:id="@+id/tenMinuteButton"
-        android:layout_width="250dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginEnd="54dp"
-        android:text="10"
+        android:layout_marginBottom="18dp"
+        android:text="5 minutes"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/fifteenMinuteButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fiveMinuteButton" />
+        app:layout_constraintTop_toBottomOf="@+id/timerTextView"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/tenMinuteButton"
+        android:layout_width="248dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="18dp"
+        android:text="10 minutes"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/fifteenMinuteButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerTextView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/fifteenMinuteButton"
         android:layout_width="248dp"
         android:layout_height="49dp"
         android:layout_marginStart="80dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="56dp"
-        android:layout_marginBottom="5dp"
-        android:text="15"
+        android:text="15 minutes"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/startButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tenMinuteButton" />
+        app:layout_constraintTop_toBottomOf="@+id/fiveMinuteButton" />
 
     <Button
         android:id="@+id/startButton"
@@ -82,26 +87,14 @@
         android:id="@+id/timerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="89dp"
+        android:layout_marginStart="173dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="173dp"
         android:text="00:00"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guidedMeditationText" />
-
-    <Button
-        android:id="@+id/customButton"
-        android:layout_width="248dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="82dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="54dp"
-        android:text="Custom"
-        app:layout_constraintBottom_toTopOf="@+id/fiveMinuteButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerTextView"
-        app:layout_constraintVertical_chainStyle="packed" />
 
 </android.support.constraint.ConstraintLayout>
